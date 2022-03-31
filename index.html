@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" type = "text/css" href="./style.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <style>
+        input:hover {
+          background-color: yellow;
+        }
+        button:hover {
+          background-color: greenyellow;
+        }
+        body{
+    background-image: url('https://images.unsplash.com/photo-1487700160041-babef9c3cb55?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1752&q=80');
+}
+
+
+.container{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-left: 10rem;
+    margin-top: 10rem;
+    margin-left: 40%;
+    
+        
+      
+}
+.heading{
+    margin-left: 2.5rem;
+}
+input{
+    
+    border: .5rem;
+    border-radius: .5rem;
+    background-color: lightblue;
+    width: 16rem;
+    height: 2rem;
+    display: flex;
+    margin-top: .5rem;
+    margin-bottom: 1.5rem;
+    
+}
+button{
+    background-color: aliceblue;
+    color: green;
+    height: 2rem;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+}
+.block{
+    margin: 2rem;
+    padding: 2rem;
+    width: 40%;
+    height: 30%;
+    justify-content: space-between;
+    display: table-cell;
+    /* display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-gap: 10px ; */
+    
+    /* display: flex;
+    flex-direction: column; */
+    border: 2px;
+    border-style: solid;
+    border-color: red;
+    
+    
+}
+.h3{
+    display: table-cell;
+padding: 10px;
+text-align: justify;
+border-bottom: 1px solid black;
+    /* display: table;
+    flex-direction: column; */
+}
+/* .p{
+    
+    display: table-cell;
+padding: 10px;
+text-align: justify;
+border-bottom: 1px solid black;
+    /* display: flex;
+    justify-content: center; */
+}  */
+
+        </style>
+    
+    <div class="container">
+        <h1 class="heading">Enter Details</h1>
+        <input class="pin" type="text" placeholder="Enter pin of Your Locality">
+        <input class="age" type="text" placeholder="Enter Age">
+        <input class="mail" type="text" placeholder="Email Address">
+        <button>Get Schedule</button>
+    </div>
+</body>
+<script>
+    let body = document.querySelector("body");
+    let btn = document.querySelector("button");
+    btn.addEventListener("click",async function(){
+        let pin = document.querySelector(".pin").value;
+        let age = document.querySelector(".age").value;
+        let email = document.querySelector(".mail").value;
+        const response = await axios.get(`/details/${pin}/${age}/${email}`); 
+        //console.log(response.data);
+        let arr = response.data;
+        for(let i=0;i<arr.length;i++){
+
+            let div = document.createElement("div");
+            div.classList.add("block");
+            for(let key in arr[i]){
+                let h3 = document.createElement("h3");
+                h3.classList.add("h3");
+                let p = document.createElement("p");
+                p.classList.add("p");
+                h3.innerText = key;
+                p.innerText = arr[i][key];
+                h3.appendChild(p);
+                div.appendChild(h3);
+                div.appendChild(p);
+            }
+            body.appendChild(div);
+        }
+    
+    })
+</script>
+</html>
