@@ -133,5 +133,8 @@
   "bugs": {
     "url": "https://github.com/ShubhamD1x1T/COWIN-Automation-Project/issues"
   },
-  "homepage": "https://github.com/ShubhamD1x1T/COWIN-Automation-Project#readme"
+  "homepage": "https://github.com/ShubhamD1x1T/COWIN-Automation-Project#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }

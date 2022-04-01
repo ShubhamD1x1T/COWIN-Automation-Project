@@ -3,6 +3,7 @@ const express = require('express')
 const path = require("path");
 const cp = require("child_process");
 const nodemailer = require("nodemailer");
+const port = process.env.PORT || 3000;
 const app = express()
 
 let transporter = nodemailer.createTransport({
